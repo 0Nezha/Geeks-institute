@@ -15,8 +15,8 @@ else:
     
 #exercice4:    
 
-user_height = input("What's your height in centimeters?")
-if user_height >= "145":
+user_height = int(input("What's your height in centimeters?"))
+if user_height >= 145:
     print("You are tall enough! Enjoy the ride!")
 else:
     print("You are not tall enough to ride.")
