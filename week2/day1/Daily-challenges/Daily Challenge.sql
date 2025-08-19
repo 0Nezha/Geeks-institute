@@ -21,4 +21,5 @@ FROM actors;
 --2
 INSERT INTO actors (first_name, last_name, age, number_oscars)
 VALUES('NERA', '');
---The outcome will be an error. 
+"""The outcome will be an error: INSERT has more target columns than expressions,
+so the number of values must match the number of specified columns."""
