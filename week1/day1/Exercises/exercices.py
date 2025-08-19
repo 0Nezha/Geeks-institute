@@ -34,7 +34,7 @@ print("Our favorite numbers are:", our_fav_numbers)
 
 #exercice6:
 #Given a tuple which value is integers, is it possible to add more integers to the tuple?
-#No, tuples are immutable in Python. Once a tuple is created, you cannot add or remove elements from it.
+#No, tuples are immutable in Python. Once a tuple is created, cannot add or remove elements from it.
 
 #exercice7:
 basket = ["Banana", "Apples", "Oranges", "Blueberries"]
