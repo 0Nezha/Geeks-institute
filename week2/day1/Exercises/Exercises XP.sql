@@ -50,3 +50,4 @@ SELECT * FROM customers WHERE last_name = 'Jones';
 
 --All customers whose firstname is not 'Scott'
 SELECT * FROM customers WHERE first_name != 'Scott';
+
