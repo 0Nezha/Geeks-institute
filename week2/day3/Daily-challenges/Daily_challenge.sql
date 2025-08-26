@@ -134,5 +134,5 @@ JOIN book b ON l.book_fk_id = b.book_id
 WHERE b.title = 'Alice In Wonderland';
 --
 DELETE FROM student WHERE name = 'Bob';
--- When we delete a student from the **Student** table, all their related rows in the **Library** table are automatically deleted due to the **ON DELETE CASCADE** constraint.
+-- When we delete a student from the Student table, all their related rows in the Library table are automatically deleted due to the ON DELETE CASCADE constraint.
 
