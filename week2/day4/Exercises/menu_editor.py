@@ -76,3 +76,5 @@ def show_restaurant_menu():
     for item in items:
         print(f"{item.name} - ${item.price}")
     
+if __name__ == "__main__":
+    show_user_menu()
