@@ -3,17 +3,26 @@ from database.index import connect_to_db
 import os
 from dotenv import load_dotenv
 from psycopg2.extras import RealDictCursor
+from werkzeug.utils import secure_filename
 
 load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'supersecretkey')
 
+# Config upload
+UPLOAD_FOLDER = "static/uploads"
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 @app.route('/')
 def index():
     page = request.args.get('page', 1, type=int)
-    per_page = 6  # nombre de cartes par page
+    per_page = 6
     offset = (page - 1) * per_page
 
     conn = connect_to_db()
@@ -22,12 +31,10 @@ def index():
 
     cursor = conn.cursor(cursor_factory=RealDictCursor)
 
-    # Compter le nombre total de livres
     cursor.execute("SELECT COUNT(*) as total FROM books")
     total_books = cursor.fetchone()['total']
-    total_pages = (total_books + per_page - 1) // per_page  # arrondi vers le haut
+    total_pages = (total_books + per_page - 1) // per_page
 
-    # Récupérer les livres pour la page actuelle
     cursor.execute("""
         SELECT b.*, a.name AS author_name
         FROM books b
@@ -42,7 +49,6 @@ def index():
     return render_template('index.html', books=books, page=page, total_pages=total_pages)
 
 
-
 @app.route('/books/<int:id>')
 def book_detail(id):
     conn = connect_to_db()
@@ -50,14 +56,13 @@ def book_detail(id):
         return render_template('details.html', book=None)
 
     cursor = conn.cursor(cursor_factory=RealDictCursor)
-    cursor.execute(
-        """
+    cursor.execute("""
         SELECT b.*, a.name AS author_name
         FROM books b
         LEFT JOIN books_authors ba ON b.book_id = ba.book_id
         LEFT JOIN authors a ON ba.author_id = a.author_id
         WHERE b.book_id = %s
-       """, (id,))
+    """, (id,))
     book = cursor.fetchone()
     conn.close()
 
@@ -79,13 +84,11 @@ def create():
             'genre': request.form.get('genre', '').strip()
         }
 
-        
         for key, value in payload.items():
             if not value:
                 flash(f"{key} is required", "red")
                 return render_template('create.html')
 
-        # Convert rating and year
         try:
             payload['rating'] = float(payload['rating'])
         except:
@@ -96,6 +99,16 @@ def create():
         except:
             payload['publication_year'] = 0
 
+        #  Gestion de l'image
+        image_url = None
+        image_file = request.files.get("image")
+        if image_file and allowed_file(image_file.filename):
+            filename = secure_filename(image_file.filename)
+            filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+            os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)  # créer dossier si inexistant
+            image_file.save(filepath)
+            image_url = f"/static/uploads/{filename}"
+
         conn = connect_to_db()
         if not conn:
             flash("Database connection failed", "red")
@@ -103,8 +116,8 @@ def create():
 
         cursor = conn.cursor()
         cursor.execute(
-            "INSERT INTO books (title, description, rating, publication_year, genre) VALUES (%s, %s, %s, %s, %s)",
-            (payload['title'], payload['description'], payload['rating'], payload['publication_year'], payload['genre'])
+            "INSERT INTO books (title, description, rating, publication_year, genre, image_url) VALUES (%s, %s, %s, %s, %s, %s)",
+            (payload['title'], payload['description'], payload['rating'], payload['publication_year'], payload['genre'], image_url)
         )
         conn.commit()
         conn.close()
@@ -147,9 +160,19 @@ def edit(id):
         except:
             publication_year = 0
 
+        #  Gestion nouvelle image (si uploadée)
+        image_url = book['image_url']
+        image_file = request.files.get("image")
+        if image_file and allowed_file(image_file.filename):
+            filename = secure_filename(image_file.filename)
+            filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+            os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
+            image_file.save(filepath)
+            image_url = f"/static/uploads/{filename}"
+
         cursor.execute(
-            "UPDATE books SET title=%s, description=%s, rating=%s, publication_year=%s, genre=%s WHERE book_id=%s",
-            (title, description, rating, publication_year, genre, id)
+            "UPDATE books SET title=%s, description=%s, rating=%s, publication_year=%s, genre=%s, image_url=%s WHERE book_id=%s",
+            (title, description, rating, publication_year, genre, image_url, id)
         )
         conn.commit()
         conn.close()
@@ -199,6 +222,7 @@ def search():
 
     return render_template('search.html', books=books)
 
+
 @app.route('/stats')
 def stats():
     conn = connect_to_db()
@@ -207,19 +231,15 @@ def stats():
 
     cursor = conn.cursor(cursor_factory=RealDictCursor)
 
-    # Total books
     cursor.execute("SELECT COUNT(*) as total FROM books")
     total_books = cursor.fetchone()['total']
 
-    # Average rating
     cursor.execute("SELECT AVG(rating) as avg_rating FROM books")
     avg_rating = cursor.fetchone()['avg_rating'] or 0
 
-    # Books by genre
     cursor.execute("SELECT genre, COUNT(*) as count FROM books GROUP BY genre ORDER BY count DESC")
     books_by_genre = cursor.fetchall()
 
-    # Latest books
     cursor.execute("""
         SELECT b.*, a.name as author_name
         FROM books b
@@ -232,12 +252,11 @@ def stats():
 
     conn.close()
 
-    return render_template('stats.html', 
-                            total_books=total_books, 
-                            avg_rating=avg_rating, 
-                            books_by_genre=books_by_genre, 
-                            latest_books=latest_books)
-
+    return render_template('stats.html',
+                           total_books=total_books,
+                           avg_rating=avg_rating,
+                           books_by_genre=books_by_genre,
+                           latest_books=latest_books)
 
 
 if __name__ == '__main__':
