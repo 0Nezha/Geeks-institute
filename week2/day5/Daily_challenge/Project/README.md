@@ -80,23 +80,23 @@ Puis ouvre ton navigateur sur :
 
 📂 Structure du projet
 # Required structure
+# Required structure
 project/
-├── index.py            # Main Flask application
+├── index.py              # Main Flask application
 ├── models/
-│ └── your_model.py     # Database models
+│   └── your_model.py     # Database models
 ├── database/
-│ ├── index.py          # Database connection
-│ └── seed/
-│      └── index.sql    # Database schema and seed data
+│   ├── index.py          # Database connection
+│   └── seed/
+│       └── index.sql     # Database schema and seed data
 ├── templates/
-│ ├── base.html         # Base template
-│ ├── index.html        # List view
-│ ├── create.html       # Create form
-│ ├── edit.html         # Edit form
-│ ├── details.html      # Detail view
-│ └── stats.html        # Statistics page
-├── requirements.txt    # Python dependencies
-├── .env                # Environment variables (DB config, secret key)
-└── README.md           # Project documentation
+│   ├── base.html         # Base template
+│   ├── index.html        # List view
+│   ├── create.html       # Create form
+│   ├── edit.html         # Edit form
+│   ├── details.html      # Detail view
+│   └── stats.html        # Statistics page
+└── requirements.txt      # Python dependencies
+
 
 
