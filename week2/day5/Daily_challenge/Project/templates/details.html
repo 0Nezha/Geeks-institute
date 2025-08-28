@@ -11,7 +11,10 @@
   <h1 class="text-2xl font-bold mb-4">Book Detail</h1>
   <div class="bg-gradient-to-r from-purple-900 to-sky-400 border group border-gray-200 rounded-md p-4 hover:shadow-md transition-all duration-300 max-w-lg mx-auto">
     <div class="relative overflow-hidden rounded-md">
-      <img src="{{ book.image_url }}" alt="{{ book.title }}" class="w-full h-96 object-contain rounded-md group-hover:scale-105 transition-all duration-300">
+      <img src="{{ book.image_url or 'https://picsum.photos/400/600?random=' ~ book.book_id }}" 
+     alt="{{ book.title }}" 
+     class="w-full h-48 object-cover rounded-md group-hover:scale-105 transition-all duration-300">
+
       <div class="absolute flex items-center gap-1 top-2 right-2 bg-gray-600 text-white px-2 py-1 rounded-md">
         <i class="bi bi-star-fill text-sm"></i>
         <span>{{ book.rating }}</span>

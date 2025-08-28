@@ -10,7 +10,8 @@ CREATE TABLE books (
     description TEXT NOT NULL,
     genre VARCHAR(50) NOT NULL,
     rating DECIMAL(2, 1) NOT NULL,
-    publication_year INT NOT NULL
+    publication_year INT NOT NULL,
+    image_url VARCHAR(255)
 );
 
 INSERT INTO books (title, description, genre, rating, publication_year) 
