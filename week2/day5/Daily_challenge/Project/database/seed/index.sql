@@ -132,7 +132,7 @@ SET image_url = 'https://cdn.britannica.com/21/182021-050-666DB6B1/book-cover-To
 WHERE book_id = 1;
 
 UPDATE books
-SET image_url = 'hhttps://images.unsplash.com/photo-1622609184693-58079bb6742f?q=80&w=435&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+SET image_url = 'https://bci.kinokuniya.com/jsp/images/book-img/97801/97801410/9780141036144.JPG'
 WHERE book_id = 2;
 
 UPDATE books
@@ -140,29 +140,29 @@ SET image_url = 'https://m.media-amazon.com/images/I/712P0p5cXIL._SY425_.jpg'
 WHERE book_id = 3;
 
 UPDATE books
-SET image_url = 'https://example.com/images/the_great_gatsby.jpg'
+SET image_url = 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1650033243i/41733839.jpg'
 WHERE book_id = 4;
 
 UPDATE books
-SET image_url = 'https://example.com/images/the_catcher_in_the_rye.jpg'
+SET image_url = 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1480444914i/7933650.jpg'
 WHERE book_id = 5;
 
 UPDATE books
-SET image_url = 'https://example.com/images/the_alchemist.jpg'
+SET image_url = 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1442866592i/9276509.jpg'
 WHERE book_id = 6;
 
 UPDATE books
-SET image_url = 'https://example.com/images/the_da_vinci_code.jpg'
+SET image_url = 'https://danbrown.com/wp-content/uploads/2024/10/Dan-Brown_The-Da-Vinci-Code-book-cover_2024.jpg'
 WHERE book_id = 7;
 
 UPDATE books
-SET image_url = 'https://example.com/images/the_girl_with_the_dragon_tattoo.jpg'
+SET image_url = 'https://sdi4.chrislands.com/sdi/978/03/07/9/9780307949493.jpg'
 WHERE book_id = 8;
 
 UPDATE books
-SET image_url = 'https://example.com/images/the_hunger_games.jpg'
+SET image_url = 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1586722975i/2767052.jpg'
 WHERE book_id = 9;
 
 UPDATE books
-SET image_url = 'https://example.com/images/the_fault_in_our_stars.jpg'
+SET image_url = 'http://marcellapurnama.com/wp-content/uploads/2013/04/John-Green-The-Fault-In-Our-Stars.jpg'
 WHERE book_id = 10;
