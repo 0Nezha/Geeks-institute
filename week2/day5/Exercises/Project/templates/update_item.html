@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="max-w-7xl mx-auto my-10">
+  <form action="/update/{{ item_id }}" method="post"  enctype="multipart/form-data"
+        class="flex flex-col gap-4 max-w-md mx-auto mt-4 p-4 bg-white border border-gray-200 rounded-md">
+    <h1 class="text-2xl font-bold">Edit Dish</h1>
+
+    <!-- Nom du plat -->
+    <input type="text" name="name" value="{{ item.name }}" placeholder="Dish name"
+           class="border border-gray-200 rounded-md p-2" required>
+
+    <!-- Note -->
+    <input type="number" name="rating" value="{{ item.rating }}" placeholder="Rating (0-10)"
+           min="0" max="10" step="0.1"
+           class="border border-gray-200 rounded-md p-2">
+
+    <!-- Prix -->
+    <input type="number" name="price" value="{{ item.price }}" placeholder="Price"
+           min="0" class="border border-gray-200 rounded-md p-2" required>
+
+    <!-- Catégorie -->
+    <select name="category" class="border border-gray-200 rounded-md p-2" required>
+      <option value="" disabled>Select category</option>
+      {% for c in ["Appetizer","Main Course","Dessert","Beverage","Side Dish"] %}
+        <option value="{{ c }}" {% if item.category == c %}selected{% endif %}>{{ c }}</option>
+      {% endfor %}
+    </select>
+
+    <!-- Description -->
+    <textarea name="description" rows="6"
+              class="border border-gray-200 rounded-md p-2">{{ item.description }}</textarea>
+              
+      <!-- Choisir l'image -->
+    <input type="file" name="image" id="imageInput" accept="image/*" class="border border-gray-200 rounded-md p-2">
+    <img id="preview" src="" alt="Image Preview" class="w-full h-64 object-contain mt-4 hidden rounded-md border">
+
+  
+    <button type="submit"
+            class="bg-gray-600 text-white px-4 py-2 rounded-md flex items-center justify-center gap-2">
+      <i class="bi bi-pencil-fill"></i> Update
+    </button>
+  </form>
+</main>
+<script>
+  const input = document.getElementById('imageInput');
+  const preview = document.getElementById('preview');
+
+  input.addEventListener('change', function() {
+      const file = this.files[0];
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+              preview.src = e.target.result;
+              preview.classList.remove('hidden');
+          }
+          reader.readAsDataURL(file);
+      }
+  });
+</script>
+{% endblock %}
