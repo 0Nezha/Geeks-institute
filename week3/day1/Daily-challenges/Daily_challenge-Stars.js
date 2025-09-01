@@ -1,4 +1,5 @@
 //using one loop:
+console.log("Using one loop:");
 let result = ""
 for (let i = 0; i < 6; i++) {
     result += "*";
@@ -7,6 +8,7 @@ for (let i = 0; i < 6; i++) {
 
 
 //using two nested for loops
+console.log("Using two nested for loops:");
 for (let i = 0; i < 6; i++) {
     let result2 = "";
   for (let j = 0; j <= i; j++) {
