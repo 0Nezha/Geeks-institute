@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work with forms</title>
+</head>
+<body>
+<form>
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="firstname"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lastname"><br><br>
+  <input type="submit" value="Submit" id="submit">
+</form> 
+<ul class="usersAnswer"></ul>
+  <script>
+        //1:
+        let form = document.querySelector("form");
+        console.log(form);
+
+        //2:
+        let firstName= document.getElementById('fname');
+        let lastName = document.getElementById('lname');
+        console.log("Retrieve the inputs by ID:", firstName, lastName);
+
+        //3:
+        let firstNameInput = document.querySelector("[name=firstname]");
+        let lastNameInput = document.querySelector("[name=lastname]");
+        console.log('By name:', firstNameInput, lastNameInput );
+
+        //4:
+          //1:
+            form.addEventListener('submit', function(event) {
+            event.preventDefault(); //Prevents the form from reloading the page
+          //2:
+            let fName = firstNameInput.value;
+            let lName = lastNameInput.value;
+          //3: Check if values are not empty
+            if (fName === '' || lName === '') {
+                alert("You must fill out both fields");
+                return;
+            }
+          //4 Create <li> elements for each input value
+            let ul = document.querySelector('.usersAnswer');
+            let li1 = document.createElement('li');
+            li1.textContent = fName;
+            let li2 = document.createElement('li');
+            li2.textContent = lName;
+            // Append <li> elements to the <ul>
+            ul.appendChild(li1);
+            ul.appendChild(li2);
+
+            console.log("Form submitted");
+            console.log("First Name:", fName);
+            console.log("Last Name:", lName);
+        });
+    </script>
+</body>
+</html>
