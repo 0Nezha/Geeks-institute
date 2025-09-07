@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change the article</title>
+    <style>
+        /* 7:BONUS */
+      @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
+
+     .fade:hover {
+       animation: fadeOut 2s forwards;
+      }
+    </style>
+</head>
+<body>
+    <article>
+    <h1> Some Facts </h1>
+    <h2> The Chocolate </h2>
+    <h3> History of the chocolate </h3>
+    <p> Chocolate is made from tropical Theobroma cacao tree seeds. 
+    Its earliest use dates back to the Olmec civilization in Mesoamerica.</p>
+    <p class="fade"> After the European discovery of the Americas, chocolate became 
+    very popular in the wider world, and its demand exploded. </p>
+    <p> Chocolate has since become a popular food product that millions enjoy every day, 
+    thanks to its unique, rich, and sweet taste.</p> 
+    <p> But what effect does eating chocolate have on our health?</p> 
+</article>
+<script>
+    //1:
+    let h1 = document.querySelector('h1');
+    console.log(h1);
+    //2:
+    let article = document.querySelector('article');
+    let lastParagraph = article.lastElementChild;
+    article.removeChild(lastParagraph);
+    //3:
+    let h2 = document.querySelector('h2');
+    h2.addEventListener('click', () => {
+        h2.style.backgroundColor = 'red';
+    });
+    //4:Add an event listener which will hide the h3 when it’s clicked on (use the display:none property).
+    let h3 = document.querySelector('h3');
+    h3.addEventListener('click', () => {
+        h3.style.display = 'none';
+    });
+     //5:
+    let button = document.createElement('button');
+    button.textContent = 'Make text bold';
+    button.addEventListener('click', () => {
+        let Allparagraphs = document.querySelectorAll('p');
+        Allparagraphs.forEach(p => {
+            p.style.fontWeight = 'bold';
+        });
+    });
+    document.body.appendChild(button);
+    //6:BONUS
+    h1.addEventListener('mouseover', () => {
+        let size = Math.floor(Math.random() * 101);
+        h1.style.fontSize = /*sizerandom*/ 100 + 'px';
+    });
+
+</script>
+</body>
+</html>
