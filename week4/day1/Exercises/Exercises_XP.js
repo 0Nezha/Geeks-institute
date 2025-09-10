@@ -2,7 +2,7 @@
 
 // #1
 function funcOne() {
-    let a = 5;
+    const a = 5;
     if(a > 1) {
         a = 3;
     }
