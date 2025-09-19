@@ -173,8 +173,6 @@ def get_random_temp(season):
         return random.randint(0, 32)
 
 
-
-
 #Bonus:
 def get_random_temp_float(season):
     if season == "winter":
@@ -200,3 +198,81 @@ def season(month):
         return "autumn"
     else:
         return None
+
+
+#Exercise 8 : Star Wars Quiz
+data = [
+    {
+        "question": "What is Baby Yoda's real name?",
+        "answer": "Grogu"
+    },
+    {
+        "question": "Where did Obi-Wan take Luke after his birth?",
+        "answer": "Tatooine"
+    },
+    {
+        "question": "What year did the first Star Wars movie come out?",
+        "answer": "1977"
+    },
+    {
+        "question": "Who built C-3PO?",
+        "answer": "Anakin Skywalker"
+    },
+    {
+        "question": "Anakin Skywalker grew up to be who?",
+        "answer": "Darth Vader"
+    },
+    {
+        "question": "What species is Chewbacca?",
+        "answer": "Wookiee"
+    }
+]
+
+#1.
+def ask_questions():
+    correct = 0
+    incorrect = 0
+    wrong_answers = []
+
+    for item in data:
+        user_answer = input(item["question"] + " ").strip()
+        if user_answer.lower() == item["answer"].lower():
+            print("Correct!")
+            correct += 1
+        else:
+            print("Incorrect!")
+            incorrect += 1
+
+            wrong_answers.append({
+                "question": item["question"],
+                "your_answer": user_answer,
+                "correct_answer": item["answer"]
+            })
+    return correct, incorrect, wrong_answers
+
+#2.
+def show_results(correct, incorrect, wrong_answers):
+    print(f"\nYou got {correct} correct and {incorrect} incorrect.")
+    
+#3.
+    if wrong_answers:
+        print("\nHere are the questions you answered incorrectly:")
+        for item in wrong_answers:
+            print(f"- Question: {item['question']}")
+            print(f"  Your answer: {item['your_answer']}")
+            print(f"  Correct answer: {item['correct_answer']}\n")
+
+    if incorrect > 3:
+        print("You missed more than 3 questions. Would you like to play again? (yes/no)")
+        play_again = input().strip().lower()
+        if play_again == "yes":
+            print("\nLet's try again!\n")
+            main()
+        else:
+            print("Thanks for playing!")
+
+def main():
+    correct, incorrect, wrong_answers = ask_questions()
+    show_results(correct, incorrect, wrong_answers)
+
+main()
