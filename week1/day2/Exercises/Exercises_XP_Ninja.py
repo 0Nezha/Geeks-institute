@@ -63,10 +63,3 @@ def morse_to_english(morse_code):
         decoded_letters = [morse_to_char.get(letter, '') for letter in letters]
         decoded_words.append("".join(decoded_letters))
     return " ".join(decoded_words)
-# exmpl
-message = "Hello World"
-morse_code = english_to_morse(message)
-print("Morse:", morse_code)
-
-decoded = morse_to_english(morse_code)
-print("English:", decoded)
