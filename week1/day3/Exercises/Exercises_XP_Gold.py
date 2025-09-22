@@ -35,6 +35,7 @@ print(list.sorted_list())
 print(list.create_list())
 
 #Exercise 3 : Restaurant Menu Manager
+# file manager.py
 menu_manager = MenuManager()
 
 print(menu_manager.add_item("Pizza", 18, "A", True))
