@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="max-w-7xl mx-auto my-10">
+  <h1 class="text-2xl font-extrabold mb-4 text-white">Menu Detail</h1>
+  <div class="bg-orange-200 border group border-gray-200 rounded-md p-4 hover:shadow-md transition-all duration-300 max-w-lg mx-auto">
+    <div class="relative overflow-hidden rounded-md">
+      <img src="{{ menu_item.image_url or 'https://picsum.photos/400/600?random=' ~ menu_item.item_id }}" 
+     alt="{{ menu_item.name }}" 
+     class="w-full object-cover rounded-md group-hover:scale-105 transition-all duration-300">
+
+      <div class="absolute flex items-center gap-1 top-2 right-2 bg-gray-600 text-white px-2 py-1 rounded-md">
+        <i class="bi bi-star-fill text-sm"></i>
+        <span>{{ menu_item.rating }}</span>
+      </div>
+    </div>
+    <div class="flex items-baseline justify-between gap-4">
+      <h2 class="text-lg font-bold mt-2">{{ menu_item.name }}</h2>
+      <h2 class="text-sm text-gray-900">{{ menu_item.category }} | {{ menu_item.price }} DH</h2>
+    </div>
+    <p class="text-gray-900 mt-2 break-words">{{ menu_item.description }}</p>
+    <div class="flex items-center gap-2 mt-4 justify-between">
+      <a href="{{ url_for('update_item', item_id=menu_item.item_id) }}"
+         class="bg-gray-600 text-white px-4 py-2 rounded-md flex items-center gap-2">
+       <i class="bi bi-pencil-fill"></i>
+       Edit 
+     </a>
+
+      <form action="/delete/{{ menu_item.item_id }}" method="post">
+        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-md flex items-center justify-center gap-2 ml-auto">
+          <i class="bi bi-trash-fill"></i> Delete    
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="flex justify-between items-center mb-4">
+    <a href="{{ url_for('index') }}"
+       class="bg-orange-400 text-white px-4 py-2 rounded-md flex items-center gap-2">
+      <i class="bi bi-arrow-left"></i> Back to Menu
+    </a>
+  </div>
+</main>
+{% endblock %}

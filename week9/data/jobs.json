@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Frontend Intern",
+    "location": "Casablanca",
+    "skillsRequired": ["React", "JS", "Git"],
+    "jdSnippet": "We build UI with React and Git workflows."
+  },
+  {
+    "title": "Backend Python Developer",
+    "location": "Rabat",
+    "skillsRequired": ["Python", "Django", "SQL"],
+    "jdSnippet": "Work on backend APIs using Django and SQL databases."
+  },
+  {
+    "title": "DevOps Engineer",
+    "location": "Casablanca",
+    "skillsRequired": ["AWS", "Kubernetes", "Docker"],
+    "jdSnippet": "Manage cloud infrastructure and CI/CD pipelines."
+  }
+]

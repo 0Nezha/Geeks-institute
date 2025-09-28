@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <style>
+        #navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #242323;
+            padding: 20px;
+            color: white;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-info img {
+            width: 80px;
+            height: 80px;
+            border-radius: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <h1>My Website</h1>
+    </nav>
+
+    <script>
+       (function(userName) {
+            const navbar = document.getElementById("navbar");
+            const div = document.createElement("div");
+            div.classList.add("user-info");
+            div.innerHTML = `
+                <img src="https://i.pinimg.com/736x/2d/95/e5/2d95e5886fc4c65a6778b5fee94a7d59.jpg" />
+                <h2>${userName}</h2>
+            `;
+            navbar.appendChild(div);
+        })("Nee");
+
+    </script>
+</body>
+</html>

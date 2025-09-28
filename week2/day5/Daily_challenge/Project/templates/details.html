@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="max-w-7xl mx-auto my-10">
+   <div class="flex justify-between items-center mb-4">
+    <a href="{{ url_for('index') }}"
+       class="bg-blue-900 text-white px-4 py-2 rounded-md flex items-center gap-2">
+      <i class="bi bi-arrow-left"></i> Back to Books
+    </a>
+  </div>
+  <h1 class="text-2xl font-bold mb-4 text-white">Book Detail</h1>
+  <div class="bg-gradient-to-r from-purple-900 to-sky-400 border group border-gray-200 rounded-md p-4 hover:shadow-md transition-all duration-300 max-w-lg mx-auto">
+    <div class="relative overflow-hidden rounded-md">
+      <img src="{{ book.image_url or 'https://picsum.photos/400/600?random=' ~ book.book_id }}" 
+     alt="{{ book.title }}" 
+     class="w-full  object-cover rounded-md group-hover:scale-105 transition-all duration-300">
+
+      <div class="absolute flex items-center gap-1 top-2 right-2 bg-gray-600 text-white px-2 py-1 rounded-md">
+        <i class="bi bi-star-fill text-sm"></i>
+        <span>{{ book.rating }}</span>
+      </div>
+    </div>
+    <div class="flex items-baseline justify-between gap-4">
+      <h2 class="text-lg font-bold mt-2">{{ book.title }}</h2>
+      <h2 class="text-sm text-gray-900">{{ book.publication_year }} | {{ book.genre }}</h2>
+    </div>
+    <p class="text-sm text-gray-900 mt-1">by {{ book.author_name or 'Unknown Author' }}</p>
+    <p class="text-gray-900 mt-2 break-words">{{ book.description }}</p>
+    
+    <div class="flex items-center gap-2 mt-4 justify-between">
+      <a href="{{ url_for('edit', id=book.book_id) }}"
+         class="bg-blue-600 text-white px-4 py-2 rounded-md flex items-center gap-2">
+       <i class="bi bi-pencil-fill"></i>
+       Edit book
+     </a>
+  
+      <form action="/delete/{{ book.book_id }}" method="post">
+        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-md flex items-center justify-center gap-2 ml-auto">
+          <i class="bi bi-trash-fill"></i> Delete book
+        </button>
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock %}

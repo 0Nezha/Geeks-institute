@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+</head>
+<body>
+    <div id="container">Users:</div>
+<ul class="list">
+    <li>John</li>
+    <li>Pete</li>
+</ul>
+<ul class="list">
+    <li>David</li>
+    <li>Sarah</li>
+    <li>Dan</li>
+</ul>
+<script>
+//2.1:
+const container = document.getElementById("container");
+console.log(container);
+
+//2.2:
+const firstList = document.querySelectorAll("ul.list")[0];
+firstList.querySelectorAll("li")[1].textContent = "Richard";
+
+//2.3:
+const secondList = document.querySelectorAll("ul.list")[1];
+secondList.querySelectorAll("li")[1].remove();
+
+//2.4: 
+document.querySelectorAll("ul.list").forEach(ul => {ul.querySelector("li").textContent = "Nezha"; });
+
+//3.1:
+document.querySelectorAll("ul.list").forEach(ul => {ul.classList.add("student_list");});
+
+//3.2:
+firstList.classList.add("university", "attendance");
+
+//4.1:
+container.style.backgroundColor = "lightblue";
+container.style.padding = "20px";
+
+//4.2:
+secondList.querySelectorAll("li").forEach(li => {
+  if (li.textContent === "Dan") {
+    li.style.display = "none";
+  }
+});
+
+//4.3:
+firstList.querySelectorAll("li").forEach(li => {
+  if (li.textContent === "Richard") {
+    li.style.border = "2px solid blue";
+  }
+});
+
+//4.4:
+document.body.style.fontSize = "16px";
+
+//5: Bonus
+if (container.style.backgroundColor === "lightblue") {
+  const names = Array.from(document.querySelectorAll("ul.list li")).map(li => li.textContent);
+  alert(`Hello ${names[0]} and ${names[1]}`);
+}
+</script>
+</body>
+</html>

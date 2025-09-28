@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Restaurant Menu Manager{% endblock %}</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- Custom styles -->
+  <style>
+    body {
+          background-color: #f9fafb;
+          font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-cover bg-center" style="background-image: url('https://thumbs.dreamstime.com/b/restaurant-interior-design-blank-canvas-mockup-menu-art-restaurant-interior-design-blank-canvas-mockup-menu-art-392360503.jpg');">
+
+  <!-- Navbar -->
+  <header class="bg-orange-900 text-white shadow-md">
+    <div class="container mx-auto flex justify-between items-center px-6 py-4">
+      <a href="{{ url_for('index') }}" class="text-xl font-bold">Menu Manager</a>
+      <nav class="flex gap-6">
+        <a href="{{ url_for('index') }}" class="bg-orange-600 text-blue-1000 px-4 py-2 rounded-md flex items-center gap-2">
+          Home
+        </a>
+        <a href="{{ url_for('add_item') }}" class="bg-white text-orange-600 px-4 py-2 rounded-md flex items-center gap-2">
+          <i class="bi bi-plus-lg"></i>
+          <span class="font-semibold">New Item</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Content -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="max-w-7xl mx-auto my-4">
+        {% for category, message in messages %}
+          <div class="bg-yellow-100 flex items-center gap-2 justify-between border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative" role="alert">
+            <span class="block sm:inline">{{ message }}</span>
+            <i class="bi bi-x-lg cursor-pointer" onclick="this.parentElement.remove()"></i>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-orange-900 text-gray-400 text-center py-4 mt-10">
+    <div class="max-w-7xl mx-auto py-8 px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-2">
+          <span class="font-bold text-white text-lg">Menu Manager</span>
+        </div>
+       <p>&copy; {{ year }} Restaurant Menu Manager | Built with Flask </p>
+    </div>
+  </footer>
+
+</body>
+</html>

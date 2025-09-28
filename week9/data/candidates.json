@@ -1,0 +1,134 @@
+[
+  {
+    "firstName": "Amina",
+    "lastName": "El Idrissi",
+    "email": "aitelhadnezha@gmail.com",
+    "location": "Casablanca",
+    "experienceYears": 1,
+    "skills": ["React", "JS", "HTML"],
+    "availabilityDate": "2025-10-01",
+    "stage": "SOURCED",
+    "notes": "Portfolio: amina.dev"
+  },
+  {
+    "firstName": "Youssef",
+    "lastName": "Bennani",
+    "email": "youssef@example.com",
+    "location": "Rabat",
+    "experienceYears": 3,
+    "skills": ["Python", "Django", "SQL"],
+    "availabilityDate": "2025-09-20",
+    "stage": "INTERVIEW",
+    "notes": "Ex-Google intern"
+  },
+  {
+    "firstName": "Salma",
+    "lastName": "Kabbaj",
+    "email": "salma@example.com",
+    "location": "Casablanca",
+    "experienceYears": 0,
+    "skills": ["Vue.js", "CSS", "Tailwind"],
+    "availabilityDate": "2025-10-10",
+    "stage": "SOURCED",
+    "notes": "Fresh graduate ENSA"
+  },
+  {
+    "firstName": "Omar",
+    "lastName": "Amrani",
+    "email": "omar@example.com",
+    "location": "Marrakech",
+    "experienceYears": 5,
+    "skills": ["Java", "Spring Boot", "Docker"],
+    "availabilityDate": "2025-09-15",
+    "stage": "SCREEN",
+    "notes": "Worked at Capgemini"
+  },
+  {
+    "firstName": "Nadia",
+    "lastName": "Toumi",
+    "email": "nadia@example.com",
+    "location": "Fès",
+    "experienceYears": 2,
+    "skills": ["React", "Node.js", "MongoDB"],
+    "availabilityDate": "2025-11-01",
+    "stage": "INTERVIEW",
+    "notes": "Hackathon winner"
+  },
+  {
+    "firstName": "Karim",
+    "lastName": "Jamal",
+    "email": "karim@example.com",
+    "location": "Casablanca",
+    "experienceYears": 4,
+    "skills": ["C++", "C", "Embedded Systems"],
+    "availabilityDate": "2025-09-25",
+    "stage": "SCREEN",
+    "notes": "IoT projects"
+  },
+  {
+    "firstName": "Hajar",
+    "lastName": "Essafi",
+    "email": "hajar@example.com",
+    "location": "Rabat",
+    "experienceYears": 1,
+    "skills": ["Angular", "TypeScript", "HTML"],
+    "availabilityDate": "2025-10-05",
+    "stage": "SOURCED",
+    "notes": "Freelance projects"
+  },
+  {
+    "firstName": "Mehdi",
+    "lastName": "Zouhair",
+    "email": "mehdi@example.com",
+    "location": "Agadir",
+    "experienceYears": 6,
+    "skills": ["PHP", "Laravel", "MySQL"],
+    "availabilityDate": "2025-09-18",
+    "stage": "SCREEN",
+    "notes": "Senior developer"
+  },
+  {
+    "firstName": "Sara",
+    "lastName": "Ouahbi",
+    "email": "sara@example.com",
+    "location": "Casablanca",
+    "experienceYears": 2,
+    "skills": ["React", "Next.js", "GraphQL"],
+    "availabilityDate": "2025-10-02",
+    "stage": "INTERVIEW",
+    "notes": "Contributed to OSS"
+  },
+  {
+    "firstName": "Adil",
+    "lastName": "Fassi",
+    "email": "adil@example.com",
+    "location": "Tanger",
+    "experienceYears": 0,
+    "skills": ["HTML", "CSS", "Bootstrap"],
+    "availabilityDate": "2025-09-30",
+    "stage": "SOURCED",
+    "notes": "Looking for first internship"
+  },
+  {
+    "firstName": "Lina",
+    "lastName": "Berrada",
+    "email": "lina@example.com",
+    "location": "Rabat",
+    "experienceYears": 3,
+    "skills": ["Python", "TensorFlow", "ML"],
+    "availabilityDate": "2025-09-22",
+    "stage": "INTERVIEW",
+    "notes": "AI research background"
+  },
+  {
+    "firstName": "Samir",
+    "lastName": "Chafik",
+    "email": "samir@example.com",
+    "location": "Casablanca",
+    "experienceYears": 7,
+    "skills": ["DevOps", "Kubernetes", "AWS"],
+    "availabilityDate": "2025-09-12",
+    "stage": "SCREEN",
+    "notes": "Cloud specialist"
+  }
+]

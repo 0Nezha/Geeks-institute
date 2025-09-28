@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="max-w-7xl mx-auto my-10">
+  <form action="/edit/{{ book.book_id }}" method="post" enctype="multipart/form-data" class="flex flex-col gap-4 max-w-md mx-auto mt-4 p-4 bg-white border border-gray-200 rounded-md">
+    <h1 class="text-2xl font-bold">Edit Book</h1>
+    <input type="text" name="title" value="{{ book.title }}" placeholder="Title" class="border border-gray-200 rounded-md p-2" required>
+    <input type="number" name="rating" value="{{ book.rating }}" placeholder="Rating" min="0" max="10" step="0.1" class="border border-gray-200 rounded-md p-2">
+    <input type="number" name="publication_year" value="{{ book.publication_year }}" placeholder="Year" min="1900" max="2025" class="border border-gray-200 rounded-md p-2">
+    <select name="genre" class="border border-gray-200 rounded-md p-2">
+      <option value="" disabled>Select Genre</option>
+      {% for g in ["Action","Adventure","Comedy","Drama","Fantasy","Horror","Mystery","Sci-Fi"] %}
+        <option value="{{ g }}" {% if book.genre == g %}selected{% endif %}>{{ g }}</option>
+      {% endfor %}
+    </select>
+    <textarea name="description" rows="6" class="border border-gray-200 rounded-md p-2">{{ book.description }}</textarea>
+
+    <input type="file" name="image" id="imageInput" accept="image/*" class="border border-gray-200 rounded-md p-2">
+    <img id="preview" src="" alt="Image Preview" class="w-full h-64 object-contain mt-4 hidden rounded-md border">
+
+    <button type="submit" class="bg-gray-600 text-white px-4 py-2 rounded-md flex items-center justify-center gap-2">
+      <i class="bi bi-pencil-fill"></i> Edit
+    </button>
+  </form>
+</main>
+<script>
+  const input = document.getElementById('imageInput');
+  const preview = document.getElementById('preview');
+
+  input.addEventListener('change', function() {
+      const file = this.files[0];
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+              preview.src = e.target.result;
+              preview.classList.remove('hidden');
+          }
+          reader.readAsDataURL(file);
+      }
+  });
+</script>
+{% endblock %}

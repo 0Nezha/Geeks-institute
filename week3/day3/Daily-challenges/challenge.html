@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8" />
+  <title>Challenge: Mad Libs</title>
+ </head>
+ <body>
+
+    <h1>Mad Libs</h1>
+    <form id="libform">
+        <label for="noun">Noun:</label> <input type="text" id="noun"><br><br>
+        <label for="adjective">Adjective:</label> <input type="text" id="adjective"><br><br>
+        <label for="person">Someone's Name:</label> <input type="text" id="person"><br><br>
+        <label for="verb">Verb:</label> <input type="text" id="verb"><br><br>
+        <label for="place">A place:</label> <input type="text" id="place"><br><br>
+        <button id="lib-button">Lib it!</button>
+    </form>
+    <button id="shuffle">Shuffle Story</button>
+    <p>Generated story: 
+    <span id="story"></span>
+    </p>
+
+    <script>
+        let currentValues = {};
+        //1:
+        let form = document.getElementById('libform')
+        form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        let noun = document.querySelector("#noun").value;
+        let adjective = document.querySelector("#adjective").value;
+        let person = document.querySelector("#person").value;
+        let verb = document.querySelector("#verb").value;
+        let place = document.querySelector("#place").value;
+        //2:
+        if (!noun || !adjective || !person || !verb || !place) {
+                alert("You must fill out all the fields!");
+                return;
+            }
+        
+        // save values for shuffle
+         currentValues = { noun, adjective, person, verb, place };
+        //3:
+        let story =`One day, ${person} took a ${adjective} ${noun} to the ${place} to ${verb}.`;
+        document.querySelector("#story").textContent = story;
+       });
+       //4:
+        if (document.querySelector("#story").textContent === "") {
+            console.error("Story is not being displayed.");
+        }else {
+          console.log("Story displayed successfully!");
+        }
+        //5:
+        document.querySelector("#shuffle").addEventListener("click", function() {
+            if (!currentValues.noun) {
+                alert("Please fill in all fields and generate a story first!");
+                return;
+            }
+            let { noun, adjective, person, verb, place } = currentValues;
+            let stories = [
+                `One day, ${person} took a ${adjective} ${noun} to the ${place} to ${verb}.`,
+                `${person} walked into the ${place} carrying a ${adjective} ${noun} and decided to ${verb} with a smile.`,
+                `At the ${place}, ${person} discovered a ${adjective} ${noun} and decided to ${verb} joyfully.`
+            ];
+
+            // Shuffle the stories array
+            stories.sort(() => Math.random() - 0.5);
+            
+            // Display the first story
+            document.querySelector("#story").textContent = stories[0];
+        });
+       
+    </script>
+
+ </body>
+</html>

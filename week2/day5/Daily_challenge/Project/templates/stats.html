@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="max-w-7xl mx-auto my-10 p-4">
+
+  <h1 class="text-3xl font-bold mb-6 text-white">Dashboard</h1>
+
+  <!-- Statistiques rapides -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <div class="bg-purple-200 p-6 rounded-lg shadow">
+      <h2 class="text-xl font-bold">Total Books</h2>
+      <p class="text-2xl mt-2">{{ total_books }}</p>
+    </div>
+    <div class="bg-purple-200 p-6 rounded-lg shadow">
+      <h2 class="text-xl font-bold">Average Rating</h2>
+      <p class="text-2xl mt-2">{{ avg_rating | round(2) }}</p>
+    </div>
+    <div class="bg-purple-200 p-6 rounded-lg shadow">
+      <h2 class="text-xl font-bold">Books by Genre</h2>
+      <ul class="mt-2">
+        {% for genre in books_by_genre %}
+          <li>{{ genre.genre }}: {{ genre.count }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <!-- Graphique -->
+  <div class="bg-purple-200 p-6 rounded-lg shadow mb-8">
+    <h2 class="text-xl font-bold mb-4">Books by Genre</h2>
+    <canvas id="genreChart"></canvas>
+  </div>
+
+  <!-- Derniers livres ajoutés -->
+  <div class="bg-purple-200 p-6 rounded-lg shadow">
+    <h2 class="text-xl font-bold mb-4">Latest Books</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {% for book in latest_books %}
+        <div class="border rounded-lg p-4 shadow hover:shadow-lg transition">
+          <div class="h-48 w-full overflow-hidden rounded-md mb-2">
+            {% if book.image_url %}
+              <img src="{{ book.image_url }}" alt="{{ book.title }}" class="w-full h-full object-cover">
+            {% else %}
+              <img src="https://picsum.photos/400/600?random={{ book.book_id }}" alt="{{ book.title }}" class="w-full h-full object-cover">
+            {% endif %}
+          </div>
+          <h3 class="text-lg font-semibold">{{ book.title }}</h3>
+          <p class="text-gray-500">by {{ book.author_name or 'Unknown' }}</p>
+          <p class="text-sm mt-1 line-clamp-2">{{ book.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</main>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const genreLabels = JSON.parse('{{ books_by_genre | map(attribute="genre") | list | tojson | safe }}');
+  const genreCounts = JSON.parse('{{ books_by_genre | map(attribute="count") | list | tojson | safe }}');
+
+  const ctx = document.getElementById('genreChart').getContext('2d');
+  const genreChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: genreLabels,
+      datasets: [{
+        label: 'Books per Genre',
+        data: genreCounts,
+        backgroundColor: 'rgba(59, 130, 246, 0.7)',
+        borderColor: 'rgba(59, 130, 246, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+</script>
+
+
+<footer class="bg-purple-900 text-gray-300 mt-16 border-t border-gray-700">
+  <div class="max-w-7xl mx-auto py-8 px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+
+    <div class="flex items-center gap-2">
+      <i class="bi bi-book text-white text-2xl"></i>
+      <span class="font-bold text-white text-lg">Books App</span>
+    </div>
+
+    <div class="flex gap-6">
+      <a href="{{ url_for('index') }}" class="hover:text-white transition">Home</a>
+      <a href="{{ url_for('create') }}" class="hover:text-white transition">New Book</a>
+      <a href="{{ url_for('stats') }}" class="hover:text-white transition">Dashboard</a>
+    </div>
+
+    <div class="text-sm text-gray-400 mt-4 md:mt-0">
+      &copy; {{ current_year }} Books App. All rights reserved.
+    </div>
+
+  </div>
+</footer>
+{% endblock %}

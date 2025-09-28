@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Book List</title>
+</head>
+<body>
+    <h1>My Book List</h1>
+    <section class="listBooks"></section>
+    <script>
+        //2..3:
+        const allBooks = [
+            { name: "The Great Gatsby",
+             author: "F. Scott Fitzgerald", 
+             image: "https://m.media-amazon.com/images/I/81af+MCATTL.jpg", 
+             alreadyRead: false },
+            { name: "The Year's Best Dark Fantasy & Horror", 
+              author: "Paula Guran", 
+              image: "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781645060925/the-best-dark-fantasy-horror-9781645060925_lg.jpg", 
+              alreadyRead: true },
+        ];
+        //4:
+        const section = document.querySelector(".listBooks");
+        allBooks.forEach(book => {
+        const bookDiv = document.createElement("div");
+        const bookInfo = document.createElement("p");
+        bookInfo.textContent = `${book.name} written by ${book.author}`;
+
+        if (book.alreadyRead) {
+            bookInfo.style.color = "red";
+        }
+        const bookImage = document.createElement("img");
+        bookImage.src = book.image;
+        bookImage.style.width = "100px";
+
+        bookDiv.appendChild(bookInfo);
+        bookDiv.appendChild(bookImage);
+        section.appendChild(bookDiv);
+        });
+    </script>
+</body>
+</html>

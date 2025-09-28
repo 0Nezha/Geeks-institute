@@ -1,0 +1,53 @@
+{
+  "FE-Intern-A": {
+    "name": "FE-Intern-A",
+    "createdAt": "2025-09-28T13:45:39.079656",
+    "candidates": [
+      {
+        "firstName": "Amina",
+        "lastName": "El Idrissi",
+        "email": "aitelhadnezha@gmail.com",
+        "location": "Casablanca",
+        "experienceYears": 1,
+        "skills": [
+          "React",
+          "JS",
+          "HTML"
+        ],
+        "availabilityDate": "2025-10-01",
+        "stage": "SOURCED",
+        "notes": "Portfolio: amina.dev"
+      },
+      {
+        "firstName": "Salma",
+        "lastName": "Kabbaj",
+        "email": "salma@example.com",
+        "location": "Casablanca",
+        "experienceYears": 0,
+        "skills": [
+          "Vue.js",
+          "CSS",
+          "Tailwind"
+        ],
+        "availabilityDate": "2025-10-10",
+        "stage": "SOURCED",
+        "notes": "Fresh graduate ENSA"
+      },
+      {
+        "firstName": "Omar",
+        "lastName": "Amrani",
+        "email": "omar@example.com",
+        "location": "Marrakech",
+        "experienceYears": 5,
+        "skills": [
+          "Java",
+          "Spring Boot",
+          "Docker"
+        ],
+        "availabilityDate": "2025-09-15",
+        "stage": "SCREEN",
+        "notes": "Worked at Capgemini"
+      }
+    ]
+  }
+}
