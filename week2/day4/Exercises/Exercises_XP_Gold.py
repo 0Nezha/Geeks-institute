@@ -8,6 +8,7 @@ users = {
 }
 
 print(users)
+
 # 2:
 # 2-1:
 while True:
@@ -43,6 +44,7 @@ while True:
                     print("This username already exists. Try again.")
                 else:
                  break
+
 # 2:
                 new_password = input("Choose a password: ")
                 users[new_username] = new_password
