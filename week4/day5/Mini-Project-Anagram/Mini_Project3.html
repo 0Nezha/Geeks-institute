@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Anagram Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #2d0333, #075596);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      color: white;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+    }
+    .container:hover {
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    }
+    input {
+      width: 90%;
+      padding: 8px;
+      margin: 5px 0;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background: #0066ff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #004ecc;
+    }
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+  </style>
+<body>
+
+  <h1>Anagram Checker 📝</h1>
+
+  <div class="container">
+    <input type="text" id="string1" placeholder="Enter first string">
+    <input type="text" id="string2" placeholder="Enter second string">
+    <button onclick="checkAnagram()">Check</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    //  Function to check if two strings are anagrams
+    function isAnagram(str1, str2) {
+      // Remove spaces and make lowercase
+      const format = str => str.replace(/\s+/g, '').toLowerCase().split('').sort().join('');
+      return format(str1) === format(str2);
+    }
+
+    //  Handle button click
+    function checkAnagram() {
+      const s1 = document.getElementById('string1').value;
+      const s2 = document.getElementById('string2').value;
+      const resultDiv = document.getElementById('result');
+
+      if (s1.trim() === '' || s2.trim() === '') {
+        resultDiv.textContent = '⚠️ Please enter both strings!';
+        resultDiv.style.color = 'yellow';
+        return;
+      }
+
+      if (isAnagram(s1, s2)) {
+        resultDiv.textContent = '✅ Yes, these are anagrams!';
+        resultDiv.style.color = 'lime';
+      } else {
+        resultDiv.textContent = '❌ No, these are not anagrams.';
+        resultDiv.style.color = 'red';
+      }
+    }
+  </script>
+
+</body>
+</html>

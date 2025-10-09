@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robo-Friends Search</title>
+    <style>
+   @import url('https://fonts.cdnfonts.com/css/sega-logo-font');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #8c06da url("circuit-pattern.png");
+      background-size: cover;
+    }
+
+    /* --- Navbar --- */
+    .navbar {
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      padding: 15px 20px;
+      gap: 30px;
+      background: #4caf50;
+    }
+    .navbar h1 {
+      font-family: 'SEGA LOGO FONT', sans-serif;
+      font-weight: lighter;
+      color: #13395f;
+      letter-spacing: 2px;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    #search{
+      padding: 10px;
+      background-color: #c2cbdd;
+      font-size: 1rem;
+      width: 650px;
+      border: 2px solid #739ef3;
+      border-radius: 6px;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .card {
+      background: #509ca1 url(card-pattern.png);
+      border-radius: 10px;
+      padding: 40px;
+      flex-basis: calc(100% / 4);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      transition: transform 0.3s;
+      text-align: left;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.9);
+    }
+
+    .card img {
+      width: 100%;
+      max-width: 250px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      background-color: #162447;
+      
+    }
+    .card h2 {
+      margin: 10px 0 5px;
+      color: #211944;
+    }
+    .card p {
+      margin: 5px 0;
+      color: #211944;
+    }
+    
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <h1>ROBOFRIENDS</h1>
+    <input type="text" id="search" placeholder="Search Robots by name...">
+  </nav>
+
+  <div class="card-container" id="card-container"></div>
+    <script>
+              const robots = [
+          {
+            id: 1,
+            name: 'Leanne Graham',
+            username: 'Bret',
+            email: 'Sincere@april.biz',
+            image: 'https://robohash.org/1?200x200'
+          },
+          {
+            id: 2,
+            name: 'Ervin Howell',
+            username: 'Antonette',
+            email: 'Shanna@melissa.tv',
+            image: 'https://robohash.org/2?200x200'
+          },
+          {
+            id: 3,
+            name: 'Clementine Bauch',
+            username: 'Samantha',
+            email: 'Nathan@yesenia.net',
+            image: 'https://robohash.org/3?200x200'
+          },
+          {
+            id: 4,
+            name: 'Patricia Lebsack',
+            username: 'Karianne',
+            email: 'Julianne.OConner@kory.org',
+            image: 'https://robohash.org/4?200x200'
+          },
+          {
+            id: 5,
+            name: 'Chelsey Dietrich',
+            username: 'Kamren',
+            email: 'Lucio_Hettinger@annie.ca',
+            image: 'https://robohash.org/5?200x200'
+          },
+          {
+            id: 6,
+            name: 'Mrs. Dennis Schulist',
+            username: 'Leopoldo_Corkery',
+            email: 'Karley_Dach@jasper.info',
+            image: 'https://robohash.org/6?200x200'
+          },
+          {
+            id: 7,
+            name: 'Kurtis Weissnat',
+            username: 'Elwyn.Skiles',
+            email: 'Telly.Hoeger@billy.biz',
+            image: 'https://robohash.org/7?200x200'
+          },
+          {
+            id: 8,
+            name: 'Nicholas Runolfsdottir V',
+            username: 'Maxime_Nienow',
+            email: 'Sherwood@rosamond.me',
+            image: 'https://robohash.org/8?200x200'
+          },
+          {
+            id: 9,
+            name: 'Glenna Reichert',
+            username: 'Delphine',
+            email: 'Chaim_McDermott@dana.io',
+            image:'https://robohash.org/9?200x200'
+          },
+          {
+            id: 10,
+            name: 'Clementina DuBuque',
+            username: 'Moriah.Stanton',
+            email: 'Rey.Padberg@karina.biz',
+            image:'https://robohash.org/10?200x200'
+          }
+          ];
+    
+      function displayCards(data) {
+        const container = document.getElementById('card-container');
+        container.innerHTML = "";
+        data.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <img src="${item.image}" alt="robot">
+            <h2>${item.name}</h2>
+            <p>${item.email}</p>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      displayCards(robots);
+
+      document.getElementById('search').addEventListener('input', (e) => {
+        const searchText = e.target.value.toLowerCase();
+        const filtered = robots.filter(r => r.name.toLowerCase().includes(searchText));
+        displayCards(filtered);
+      });
+
+    </script>
+</body>
+</html>
