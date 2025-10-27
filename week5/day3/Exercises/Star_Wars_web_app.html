@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>⭐ Star Wars Web App ⭐</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      overflow: hidden;
+      background: black;
+      color: #fff;
+      text-align: center;
+    }
+
+    canvas {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      padding-top: 80px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #ffc300;
+      text-shadow: 0 0 15px yellow;
+    }
+
+    button {
+      background-color: black;
+      border: 2px solid yellow;
+      color: yellow;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: yellow;
+      color: black;
+      transform: scale(1.05);
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid yellow;
+      padding: 25px;
+      margin-top: 30px;
+      border-radius: 10px;
+      width: 320px;
+      height: 220px; 
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      box-shadow: 0 0 15px rgba(255, 255, 0, 0.4);
+    }
+
+    #loading {
+      font-size: 30px;
+      color: #FFF;
+    }
+
+    .error {
+      color: #ff4c4c;
+      font-weight: bold;
+    }
+
+    #info {
+      display: none;
+      text-align: left;
+    }
+
+    #name {
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+      color: #ffd60a;
+      text-align: center;
+    }
+
+    p {
+      margin: 8px 0;
+      font-size: 1rem;
+    }
+
+    strong {
+      color: #ffc300;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Fond animé d’étoiles -->
+  <canvas id="starfield"></canvas>
+
+  <div class="container">
+    <h1>⭐ Star Wars ⭐</h1>
+
+    <div id="character" class="card">
+      <div id="loading" class="hidden">
+        <i class="fa-solid fa-spinner fa-spin"></i> Loading...
+      </div>
+
+      <div id="error" class="hidden error">
+        Oh No! That person isn’t available.
+      </div>
+
+      <div id="info">
+        <h2 id="name"></h2>
+        <p><strong>Height:</strong> <span id="height"></span></p>
+        <p><strong>Gender:</strong> <span id="gender"></span></p>
+        <p><strong>Birth Year:</strong> <span id="birth"></span></p>
+        <p><strong>Home World:</strong> <span id="homeworld"></span></p>
+      </div>
+    </div>
+
+    <br><br>
+    <button id="FindSomeone">Find Someone</button>
+  </div>
+
+  <script>
+    // Animation du fond (étoiles)
+    const canvas = document.getElementById("starfield");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const stars = [];
+    for (let i = 0; i < 200; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2,
+        speed: Math.random() * 1 + 0.5
+      });
+    }
+
+    function animate() {
+      ctx.fillStyle = "black";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "white";
+      stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        star.y += star.speed;
+        if (star.y > canvas.height) {
+          star.y = 0;
+          star.x = Math.random() * canvas.width;
+        }
+      });
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // App Star Wars API
+    const btn = document.getElementById("FindSomeone");
+    const loading = document.getElementById("loading");
+    const errorDiv = document.getElementById("error");
+    const infoDiv = document.getElementById("info");
+    const nameEl = document.getElementById("name");
+    const heightEl = document.getElementById("height");
+    const genderEl = document.getElementById("gender");
+    const birthEl = document.getElementById("birth");
+    const homeworldEl = document.getElementById("homeworld");
+
+    const API_URL = "https://www.swapi.tech/api/people/";
+
+    btn.addEventListener("click", async () => {
+      infoDiv.style.display = "none";
+      errorDiv.classList.add("hidden");
+      loading.classList.remove("hidden");
+
+      const randomId = Math.floor(Math.random() * 83) + 1;
+
+      try {
+        const res = await fetch(`${API_URL}${randomId}`);
+        if (!res.ok) throw new Error("Network error");
+
+        const data = await res.json();
+        const character = data.result.properties;
+
+        const homeRes = await fetch(character.homeworld);
+        const homeData = await homeRes.json();
+
+        nameEl.textContent = character.name;
+        heightEl.textContent = character.height;
+        genderEl.textContent = character.gender;
+        birthEl.textContent = character.birth_year;
+        homeworldEl.textContent = homeData.result.properties.name;
+
+        loading.classList.add("hidden");
+        infoDiv.style.display = "block";
+      } catch (error) {
+        loading.classList.add("hidden");
+        errorDiv.classList.remove("hidden");
+      }
+    });
+  </script>
+</body>
+</html>

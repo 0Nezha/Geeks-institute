@@ -1,0 +1,98 @@
+body {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    background: url('csm_foreign-exchange_eb6111f6c7.jpg') no-repeat center center fixed;
+    background-size: 100% 100%; 
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    padding: 10px; 
+    gap: 15px;
+    border-radius: 15px;
+    background: #30305a9c;
+    width: 40%;
+}
+
+#converter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-block: 20px;
+    font-size: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px; 
+    width: 100%;
+}
+
+.amount-container {
+    display: flex;       
+    gap: 10px;            
+    width: 100%;
+}
+
+#converter-form div input, #converter-form div select {
+    padding: 8px; 
+    width: 100%;
+    background-color: #417fb1;
+    border: 1px solid white;
+    border-radius: 8px;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+}
+
+#converter-form input::placeholder {
+    color: white;
+    text-align: center;
+}
+
+button {
+    padding: 8px 25px; 
+    font-size: 20px;
+    background-color: #f4f4f4;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #e0e0e0;
+}
+
+#result {
+    font-size: 20px;
+    font-weight: bold;
+    width: 50%;
+    padding: 5px 0;
+    color: black;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+#switch-button {
+    background-image: url('switch.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 45px 45px;
+    padding-left: 40px;    
+}
+#switch-button:hover {
+    background-color: #e0e0e0;
+}

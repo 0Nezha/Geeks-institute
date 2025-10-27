@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="Pokedex.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header-wrapper">
+            <div class="logo-container">
+                <img src="logo.png" width="300" alt="">
+            </div>
+            <div class="instructions" >
+                <h1>How to use:</h1>
+                <p>1- Press <span class="green-button" style="font-weight: bold;">the green </span> button to get a random Pokémon</p>
+                <p>2- Press the <span class="left-button" style="font-weight: bold;">left</span> and <span class="right-button" style="font-weight: bold;">right</span> buttons to see previous and next Pokémon.</p>
+            </div>
+        </div>
+        <div class="img-container">
+            <img id="pokemon-img" src="pokedex.png"  width="700"  alt="">
+                
+            <div class="info-container">
+              <!--  <h1 id="pokemon-name">Name</h1>
+                <p id="pokemon-id">#000</p>
+                <p id="pokemon-height">Height: 0 m</p>
+                <p id="pokemon-weight">Weight: 0 kg</p>
+                <p id="pokemon-type">Type: None</p> -->
+            </div>
+            <button id="circle-button"></button>
+            <button id="prev-button"></button>
+            <button id="next-button"></button>
+        </div>
+    </div>
+    <script src="Pokedex.js"></script>
+</body>
+</html>
