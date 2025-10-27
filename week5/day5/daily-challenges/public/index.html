@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Guessing Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Emoji Guessing Game</h1>
+
+        <div class="player-info">
+            <input type="text" id="player-name" placeholder="Enter your name" required>
+            <button id="start-game">Start Game</button>
+        </div>
+
+        <div class="game-container" style="display: none;">
+            <div class="score-container">
+                <p>Player: <span id="display-name"></span></p>
+                <p>Score: <span id="score">0</span></p>
+            </div>
+
+            <div class="emoji-container">
+                <h2>What is this emoji called?</h2>
+                <div id="emoji" class="emoji">❓</div>
+
+                <form id="guess-form">
+                    <div id="options-container" class="options-container">
+                    </div>
+                    <button type="submit" id="submit-guess">Submit Guess</button>
+                </form>
+            </div>
+
+            <div id="feedback" class="feedback"></div>
+
+            <button id="next-emoji" style="display: none;">Next Emoji</button>
+        </div>
+
+        <div class="leaderboard-container">
+            <h2>Top Players</h2>
+            <table id="leaderboard">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Player</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-body">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
