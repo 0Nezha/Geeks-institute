@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emoji Greeting App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <form action="/greet" method="POST">
+    <h2>👋 Welcome to the Emoji Greeting App!</h2>
+    <input type="text" name="name" placeholder="Enter your name" required />
+    <br/>
+    <label for="emoji">Choose an emoji:</label>
+    <select name="emoji" id="emoji">
+      <option value="😀">😀</option>
+      <option value="🎉">🎉</option>
+      <option value="🌟">🌟</option>
+      <option value="🎈">🎈</option>
+      <option value="👋">👋</option>
+    </select>
+    <br/>
+    <button type="submit">Greet Me!</button>
+  </form>
+</body>
+</html>
