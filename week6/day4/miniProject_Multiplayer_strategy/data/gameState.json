@@ -1,0 +1,23 @@
+{
+  "gridSize": 10,
+  "players": {
+    "player1": {
+      "x": 9,
+      "y": 9,
+      "base": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "player2": {
+      "x": 1,
+      "y": 2,
+      "base": {
+        "x": 9,
+        "y": 9
+      }
+    }
+  },
+  "turn": "player1",
+  "winner": "player1"
+}

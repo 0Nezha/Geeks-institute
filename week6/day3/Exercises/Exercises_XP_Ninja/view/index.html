@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Quiz Game</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 20px; }
+    .card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+    .options { list-style: none; padding: 0; }
+    .options li { margin: 10px 0; }
+    button { padding: 10px 16px; border: none; border-radius: 6px; cursor: pointer; }
+    .btn-primary { background: #007bff; color: white; }
+    .btn-secondary { background: #6c757d; color: white; }
+    .correct { background: #28a745; color: white; }
+    .wrong { background: #dc3545; color: white; }
+    .hidden { display:none; }
+  </style>
+</head>
+<body>
+  <h1>Quiz Game</h1>
+  <div class="card">
+    <div id="game">
+      <p id="questionText">Chargement...</p>
+      <ul id="options" class="options"></ul>
+      <div style="margin-top:16px;">
+        <button id="nextBtn" class="btn-primary">Suivant</button>
+      </div>
+      <p id="feedback" style="font-weight:bold;"></p>
+    </div>
+
+    <div id="final" class="hidden">
+      <h2>Fin du quiz</h2>
+      <p id="scoreText"></p>
+      <button id="restartBtn" class="btn-secondary">Recommencer</button>
+    </div>
+  </div>
+
+  <script>
+    let currentQuestion = null;
+    let score = 0;
+    let total = 0;
+    let answered = false;
+
+    const questionText = document.getElementById('questionText');
+    const optionsEl = document.getElementById('options');
+    const nextBtn = document.getElementById('nextBtn');
+    const feedback = document.getElementById('feedback');
+    const finalDiv = document.getElementById('final');
+    const gameDiv = document.getElementById('game');
+    const scoreText = document.getElementById('scoreText');
+    const restartBtn = document.getElementById('restartBtn');
+
+    async function loadRandomQuestion() {
+      answered = false;
+      feedback.textContent = '';
+      optionsEl.innerHTML = 'Chargement...';
+      const res = await fetch('/api/questions/random');
+      if (!res.ok) { questionText.textContent = 'Erreur de chargement'; optionsEl.innerHTML = ''; return; }
+      const q = await res.json();
+      currentQuestion = q;
+      total += 1;
+      renderQuestion(q);
+    }
+
+    function renderQuestion(q) {
+      questionText.textContent = q.question;
+      optionsEl.innerHTML = '';
+      q.options.forEach(opt => {
+        const li = document.createElement('li');
+        const btn = document.createElement('button');
+        btn.textContent = opt.text;
+        btn.dataset.optionId = opt.id;
+        btn.style.width = '100%';
+        btn.onclick = () => selectOption(opt.id, btn);
+        li.appendChild(btn);
+        optionsEl.appendChild(li);
+      });
+    }
+
+    async function selectOption(optionId, btn) {
+      if (answered) return;
+      answered = true;
+      // envoyer au serveur pour vérifier
+      const res = await fetch('/api/questions/answer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ questionId: currentQuestion.id, selectedOptionId: +optionId })
+      });
+      const data = await res.json();
+      if (data.correct) {
+        btn.classList.add('correct');
+        feedback.textContent = 'Bonne réponse !';
+        score += 1;
+      } else {
+        btn.classList.add('wrong');
+        feedback.textContent = 'Mauvaise réponse.';
+        // mettre en évidence la bonne réponse
+        Array.from(document.querySelectorAll('#options button')).forEach(b => {
+          if (+b.dataset.optionId === data.correctOptionId) b.classList.add('correct');
+        });
+      }
+    }
+
+    // next question or finish
+    nextBtn.addEventListener('click', async () => {
+      if (total >= 5) { // limit to 5 questions for demo
+        endQuiz();
+        return;
+      }
+      await loadRandomQuestion();
+    });
+
+    function endQuiz() {
+      gameDiv.classList.add('hidden');
+      finalDiv.classList.remove('hidden');
+      scoreText.textContent = `Score: ${score} / ${total}`;
+    }
+
+    restartBtn.addEventListener('click', () => {
+      score = 0; total = 0;
+      finalDiv.classList.add('hidden');
+      gameDiv.classList.remove('hidden');
+      loadRandomQuestion();
+    });
+
+    // démarrage
+    loadRandomQuestion();
+  </script>
+</body>
+</html>
+ 

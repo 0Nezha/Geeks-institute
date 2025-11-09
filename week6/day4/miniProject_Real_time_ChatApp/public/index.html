@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Join Chat</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="login-box">
+    <h1>Join Chat</h1>
+    <form id="joinForm">
+      <label>
+        Username
+        <input id="username" type="text" placeholder="Your name" maxlength="30" required />
+      </label>
+      <label>
+        Room
+        <input id="room" type="text" placeholder="Room name" maxlength="40" required />
+      </label>
+      <div style="display:flex;gap:8px;">
+        <button type="submit" class="btn">Join</button>
+        <button type="button" id="demoBtn" class="btn alt">Demo room</button>
+      </div>
+    </form>
+    <p class="small">Open multiple tabs to test real-time chat.</p>
+  </div>
+
+  <script>
+    const form = document.getElementById('joinForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const room = document.getElementById('room').value.trim();
+      if (!username || !room) return alert('Username and room required');
+      location.href = `/chat.html?username=${encodeURIComponent(username)}&room=${encodeURIComponent(room)}`;
+    });
+    document.getElementById('demoBtn').addEventListener('click', () => {
+      const username = 'Guest' + Math.floor(Math.random()*1000);
+      location.href = `/chat.html?username=${encodeURIComponent(username)}&room=demo`;
+    });
+  </script>
+</body>
+</html>

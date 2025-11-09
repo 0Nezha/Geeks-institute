@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Turn-Based Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>🎯 Jeu Tour par Tour</h1>
+    <p id="status">Chargement...</p>
+
+    <div id="grid" class="grid"></div>
+
+    <div class="controls">
+      <button onclick="move('up')">⬆️</button>
+      <div>
+        <button onclick="move('left')">⬅️</button>
+        <button onclick="move('down')">⬇️</button>
+        <button onclick="move('right')">➡️</button>
+      </div>
+    </div>
+
+    <button class="reset" onclick="resetGame()">🔄 Nouvelle Partie</button>
+
+    <script src="script.js"></script>
+  </body>
+</html>

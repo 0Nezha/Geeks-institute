@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "NEZHA",
+    "lastName": "AIT EL HAD",
+    "email": "nezhaaitelhad@gmail.com",
+    "username": "nezhaaitelhad@gmail.com",
+    "password": "$2b$10$Lvm0zVutkLWNO5mxgp9.R.qGd70jADWgdIZa0U6wHIHoJPFwBItXK"
+  },
+  {
+    "id": 2,
+    "name": "Aitelhad",
+    "lastName": "saida",
+    "email": "ismailaitelhad@gmail.com",
+    "username": "chaima",
+    "password": "$2b$10$cyiPnw0wqmEWoZ8CnjT1OenFOmNX62rTSEneFvgIx/Sd9zisvjRR2"
+  }
+]

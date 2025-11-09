@@ -1,0 +1,68 @@
+body {
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  background: #f0f4ff;
+  color: #333;
+}
+
+h1 {
+  color: #0066cc;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(10, 40px);
+  grid-template-rows: repeat(10, 40px);
+  justify-content: center;
+  margin: 20px auto;
+  gap: 4px;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: white;
+}
+
+.player1 {
+  background: #007bff;
+}
+
+.player2 {
+  background: #ff4757;
+}
+
+.base {
+  border: 2px solid #000;
+}
+
+.controls button {
+  margin: 5px;
+  padding: 10px 15px;
+  font-size: 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #0066cc;
+  color: white;
+}
+
+.controls button:hover {
+  background: #004a99;
+}
+
+.reset {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.reset:hover {
+  background: #218838;
+}

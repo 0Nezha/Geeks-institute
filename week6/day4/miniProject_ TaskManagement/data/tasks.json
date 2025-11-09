@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title": "First Task",
+    "content": "Complete the first part of the Node.js project.",
+    "firstname": "Nezha",
+    "lastname": "AIT EL HAD",
+    "completed": false
+  },
+  {
+    "id": 2,
+    "title": "Second Task",
+    "content": "Review and clean up old project files.",
+    "firstname": "Sara",
+    "lastname": "AGUENCHICH",
+    "completed": true
+  },
+  {
+    "id": 3,
+    "title": "Third Task",
+    "content": "Prepare documentation for the API routes.",
+    "firstname": "Ismail",
+    "lastname": "AIT EL HAD",
+    "completed": false
+  },
+  {
+    "id": 1762447118937,
+    "title": "New Task",
+    "content": "Testing create route",
+    "firstname": "Nezha",
+    "lastname": "Ait El Had",
+    "completed": false
+  }
+]
